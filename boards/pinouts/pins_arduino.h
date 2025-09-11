@@ -1,4 +1,6 @@
-#ifdef T_DISPLAY_S3
+#ifdef LORD_BOARD
+#include "../lord-board/pins_arduino.h"
+#elif T_DISPLAY_S3
 #include "../lilygo-t-display-s3/pins_arduino.h"
 #elif T_EMBED_1101
 #include "../lilygo-t-embed-cc1101/pins_arduino.h"
@@ -26,8 +28,6 @@
 #include "../ESP-General/pins_arduino.h"
 #elif SMOOCHIEE_BOARD
 #include "../smoochiee-board/pins_arduino.h"
-#elif XK404
-#include "../xk404/pins_arduino.h"
 #elif T_WATCH_S3
 #include "../lilygo-t-watch-s3/pins_arduino.h"
 #elif T_DISPLAY_S3_PRO
