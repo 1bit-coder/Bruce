@@ -35,6 +35,8 @@ static const uint8_t GPS_RX = 18; // ESP32 RX1 <- GPS TX
 // PN532 NFC (I2C)
 static const uint8_t SDA = 8;
 static const uint8_t SCL = 16; // Safe choice, avoids SPI/Touch conflicts
+#define GROVE_SDA SDA
+#define GROVE_SCL SCL
 
 // ---------------- Shared VSPI Bus ---------------
 // VSPI for TFT (ILI9341), Touch (XPT2046), SD card
@@ -118,8 +120,7 @@ static const uint8_t SPI_MISO_PIN = 37;
 #define NRF24_MISO_PIN SPI_MISO_PIN
 
 // ---------------- IR Transmitter/Receiver -----
-#define GROVE_SDA 2
-#define GROVE_SCL 15
+
 #define IR_RX_PIN 2  //  digital input (connect IR receiver OUT here)
 #define IR_TX_PIN 15 //  digital output (PWM capable, for IR LED)
 #define RXLED 2
