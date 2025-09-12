@@ -21,8 +21,8 @@ static const uint8_t TX = 43; // CH343 USB-Serial TX
 static const uint8_t RX = 44; // CH343 USB-Serial
 
 // UART1: GPS NEO‑6M
-static const uint8_t GPS_TX = 43; // ESP32 TX1 -> GPS RX
-static const uint8_t GPS_RX = 44; // ESP32 RX1 <- GPS TX
+static const uint8_t GPS_TX = 17; // ESP32 TX1 -> GPS RX
+static const uint8_t GPS_RX = 18; // ESP32 RX1 <- GPS TX
 
 //------------------BAD USB ----------------
 #define SERIAL_RX 44 // CH343 USB-serial RX
@@ -66,13 +66,13 @@ static const uint8_t MISO = 11;
 
 // ---------------- XPT2046 Touch  ---------------
 #define TOUCH_XPT2046_SPI
-#define TOUCH_CS 9
-#define TOUCH_IRQ 7
-#define XPT2046_TOUCH_CONFIG_INT_GPIO_NUM 7
+#define TOUCH_CS 38
+#define TOUCH_IRQ 39
+#define XPT2046_TOUCH_CONFIG_INT_GPIO_NUM TOUCH_IRQ
 #define XPT2046_SPI_BUS_MISO_IO_NUM MISO
 #define XPT2046_SPI_BUS_MOSI_IO_NUM MOSI
 #define XPT2046_SPI_BUS_SCLK_IO_NUM SCK
-#define XPT2046_SPI_CONFIG_CS_GPIO_NUM 9
+#define XPT2046_SPI_CONFIG_CS_GPIO_NUM TOUCH_CS
 
 // ---------------- SD CARD --------------------
 #define SDCARD_CS 21
