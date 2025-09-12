@@ -13,7 +13,7 @@ CYD28_TouchR touch(320, 240);
 ** Location: main.cpp
 ** Description:   initial setup for the device
 ***************************************************************************************/
-void _setup_gpio() {
+/*void _setup_gpio() {
     bruceConfig.colorInverted = 0;
     pinMode(CC1101_SS_PIN, OUTPUT);
     pinMode(NRF24_SS_PIN, OUTPUT);
@@ -27,7 +27,46 @@ void _setup_gpio() {
     Wire.setPins(SDA, SCL);
     Wire.begin();
 }
+*/
+// Power handler for battery detection
+#include <Wire.h>
+#include <XPowersLib.h>
+XPowersPPM PPM;
 
+void _setup_gpio() {
+
+  
+
+    pinMode(CC1101_SS_PIN, OUTPUT);
+    pinMode(NRF24_SS_PIN, OUTPUT);
+
+    digitalWrite(CC1101_SS_PIN, HIGH);
+    digitalWrite(NRF24_SS_PIN, HIGH);
+    // Starts SPI instance for CC1101 and NRF24 with CS pins blocking communication at start
+
+    bruceConfig.rfModule = CC1101_SPI_MODULE;
+    bruceConfig.irRx = RXLED;
+    Wire.setPins(GROVE_SDA, GROVE_SCL);
+    Wire.begin();
+    bool pmu_ret = false;
+
+    pmu_ret = PPM.init(Wire, GROVE_SDA, GROVE_SCL, BQ25896_SLAVE_ADDRESS);
+    if (pmu_ret) {
+        PPM.setSysPowerDownVoltage(3300);
+        PPM.setInputCurrentLimit(3250);
+        Serial.printf("getInputCurrentLimit: %d mA\n", PPM.getInputCurrentLimit());
+        PPM.disableCurrentLimitPin();
+        PPM.setChargeTargetVoltage(4208);
+        PPM.setPrechargeCurr(64);
+        PPM.setChargerConstantCurr(832);
+        PPM.getChargerConstantCurr();
+        Serial.printf("getChargerConstantCurr: %d mA\n", PPM.getChargerConstantCurr());
+        PPM.enableADCMeasure();
+        PPM.enableCharge();
+        PPM.enableOTG();
+        PPM.disableOTG();
+    }
+}
 /***************************************************************************************
 ** Function name: _post_setup_gpio()
 ** Location: main.cpp
@@ -46,6 +85,11 @@ void _post_setup_gpio() {
 ** Description:   Delivers the battery value from 1-100
 ***************************************************************************************/
 int getBattery() { return 0; }
+// int getBattery() {}
+//  int8_t percent = 0;
+//  percent = (PPM.getSystemVoltage() - 3300) * 100 / (float)(4150 - 3350);
+
+// return (percent < 0) ? 0 : (percent >= 100) ? 100 : percent;
 
 /*********************************************************************
 ** Function: setBrightness
