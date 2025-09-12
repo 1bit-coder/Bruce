@@ -106,7 +106,7 @@ static const uint8_t SPI_MISO_PIN = 37;
 #define USE_CC1101_VIA_SPI
 #define CC1101_SS_PIN 38
 #define CC1101_GDO0_PIN 6  // No longer conflict with TFT_BL
-#define CC1101_GDO2_PIN 22 // Moved from GPIO4 → avoids backlight & reserved pins
+#define CC1101_GDO2_PIN 39 // Moved from GPIO4 → avoids backlight & reserved pins
 #define CC1101_SCK_PIN SPI_SCK_PIN
 #define CC1101_MOSI_PIN SPI_MOSI_PIN
 #define CC1101_MISO_PIN SPI_MISO_PIN
