@@ -21,8 +21,8 @@ static const uint8_t TX = 43; // CH343 USB-Serial TX
 static const uint8_t RX = 44; // CH343 USB-Serial
 
 // UART1: GPS NEO‑6M
-static const uint8_t GPS_TX = 17; // ESP32 TX1 -> GPS RX
-static const uint8_t GPS_RX = 18; // ESP32 RX1 <- GPS TX
+static const uint8_t GPS_TX = 40; // ESP32 TX1 -> GPS RX
+static const uint8_t GPS_RX = 41; // ESP32 RX1 <- GPS TX
 
 //------------------BAD USB ----------------
 #define SERIAL_RX 44 // CH343 USB-serial RX
@@ -93,7 +93,7 @@ static const uint8_t MISO = 11;
 // ----------------Button --------------------
 #define HAS_BTN 0
 #define BTN_ALIAS "\"Ok\""
-#define BTN_PIN 0
+#define BTN_PIN -1
 
 // ---------------- Shared HSPI Bus ---------------
 // HSPI for CC1101 , NRF24+
